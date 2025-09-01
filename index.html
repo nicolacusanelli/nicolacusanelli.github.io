@@ -4,31 +4,38 @@
 <meta charset="UTF-8" />
 <title>Home Page di Nicola Cusanelli</title>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   html, body {
-    height: 100%;
     margin: 0;
-  }
-  body {
-    background-color: #3a8bbf;
+    padding: 0;
     font-family: 'Open Sans', Arial, sans-serif;
+    background-color: #3a8bbf;
+    color: #222;
+    min-height: 100%;
+  }
+
+  body {
     display: flex;
     flex-direction: column;
-    color: #222;
+    min-height: 100vh;
   }
+
   #page-wrapper {
-    flex: 1 1 auto;
     display: flex;
-    height: 100%;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap; /* permette al contenuto di andare a capo su mobile */
   }
+
   nav {
     width: 180px;
     background-color: #dbe1a1cc;
     padding: 30px 15px 10px 15px;
     border-right: 2px solid #333;
     box-sizing: border-box;
-    height: 100%;
   }
+
   nav a {
     display: block;
     color: #222;
@@ -40,59 +47,65 @@
     padding-left: 8px;
     transition: all 0.3s ease;
   }
-  nav a:first-child {
-    margin-top: 25px;
-  }
+
+  nav a:first-child { margin-top: 25px; }
+
   nav a:hover {
     color: #1a4fff;
     border-left-color: #1a4fff;
   }
+
   #content-wrapper {
-    flex-grow: 1;
-    padding: 30px 40px;
-    overflow-y: auto;
+    flex: 1;
+    padding: 30px 20px;
     background-color: #f7f9fa;
     box-shadow: inset 0 0 10px #aaa8;
+    box-sizing: border-box;
+    min-width: 250px;
   }
+
   header {
     display: flex;
-    align-items: center;        /* allinea verticalmente */
-    justify-content: center;    /* centra orizzontalmente */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     background-color: white;
     padding: 10px 20px;
     border-bottom: 2px solid #9db77e;
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto 30px auto;
-    box-sizing: border-box;
-    flex-wrap: nowrap;          /* evita che i loghi vadano a capo */
+    margin-bottom: 30px;
   }
+
   header img {
-    height: 130px;               /* puoi cambiare la dimensione */
+    height: 130px;
     width: auto;
+    margin: 10px;
   }
+
   header .title-text {
     text-align: center;
-    flex: 1;                    /* occupa lo spazio centrale */
+    flex: 1;
   }
+
   header .main-title {
     font-size: 42px;
     font-weight: 700;
     color: #49672b;
     margin: 0;
   }
+
   header .subtitle {
     font-style: italic;
     font-size: 26px;
     margin-top: 8px;
     color: #688a3d;
   }
+
   .image-container {
     display: flex;
-    justify-content: center;    /* centra orizzontalmente */
-    align-items: center;        /* centra verticalmente (se c’è altezza) */
+    justify-content: center;
     margin: 30px auto 40px auto;
   }
+
   .image-container img {
     max-width: 500px;
     width: 100%;
@@ -101,6 +114,7 @@
     box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
     display: block;
   }
+
   main {
     font-size: 18px;
     line-height: 1.6;
@@ -108,48 +122,90 @@
     max-width: 900px;
     margin: 0 auto 40px auto;
   }
+
   footer {
     text-align: center;
     padding: 15px 20px;
     background-color: #a4b26fdd;
     border-top: 1px solid #556b2f;
-    font-family: 'Open Sans', Arial, sans-serif;
     color: #2c3e1f;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-shrink: 0;
+    flex-wrap: wrap;
   }
+
   footer a {
     color: #2c3e1f;
     text-decoration: none;
   }
-  footer a:hover {
-    text-decoration: underline;
+
+  footer a:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-right: none;
+      border-bottom: 2px solid #333;
+    }
+
+    #page-wrapper {
+      flex-direction: column;
+    }
+
+    header .main-title { font-size: 32px; }
+    header .subtitle { font-size: 20px; }
   }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+  nav a {
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+  }
+  nav hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #aaa;
+  }
+
+
+
 </style>
 </head>
 
 <body>
 <div id="page-wrapper">
-<nav>
-    <a href="education.html" target="_blank" rel="noopener noreferrer">Education</a>
-    <a href="physics.html" target="_blank" rel="noopener noreferrer">Physics</a>
-    <a href="astronomy.html" target="_blank" rel="noopener noreferrer">Astronomy</a>
-    <a href="sun.html" target="_blank" rel="noopener noreferrer">Sun</a>
-    <a href="meteorology.html" target="_blank" rel="noopener noreferrer">Meteorology</a>
-    <a href="gis.html" target="_blank" rel="noopener noreferrer">GIS</a>
-    <a href="scrooge_mcduck.html" target="_blank" rel="noopener noreferrer">Scrooge McDuck</a>
-    <a href="correva.html" target="_blank" rel="noopener noreferrer">Correva l'Anno...</a>
-</nav>
-
+  <nav>
+      <a href="education/education.html" target="_blank" rel="noopener noreferrer">Education</a>
+      <a href="physics/index.html" target="_blank" rel="noopener noreferrer">Physics</a>
+      <a href="astronomy/astronomy.html" target="_blank" rel="noopener noreferrer">Astronomy</a>
+      <a href="meteorology/meteo.html" target="_blank" rel="noopener noreferrer">Meteorology</a>
+      <a href="gis/gis.html" target="_blank" rel="noopener noreferrer">GIS</a>
+      <hr>
+      <a href="gallery/gallery.html" target="_blank" rel="noopener noreferrer">Gallery</a>
+      <hr>
+      <a href="scrooge/scrooge_mcduck.html" target="_blank" rel="noopener noreferrer">Scrooge McDuck</a>
+      <a href="correva/correva.html" target="_blank" rel="noopener noreferrer">Correva l'Anno...</a>
+      <hr>
+  </nav>
 
   <div id="content-wrapper">
     <header>
       <img src="img/Logo Planetario Astronomico.png" alt="Logo sinistro">
       <div class="title-text">
         <div class="main-title">Home Page di Nicola Cusanelli</div>
+<!--
         <div class="subtitle">Welcome to my personal homepage</div>
+-->
       </div>
       <img src="img/Logo Planetario Astronomico.png" alt="Logo destro">
     </header>
@@ -159,8 +215,12 @@
     </div>
 
     <main>
-      <p style="font-size:20px; font-style:italic; text-align:center; color:#444;">
+      <p style="font-size:24px; font-style:italic; text-align:center; color:#444;">
+
+        Welcome to my personal homepage
+        <!--
         Benvenuto nel mio sito personale dedicato alle scienze e alle mie passioni.
+      -->
       </p>
     </main>
   </div>
@@ -169,10 +229,16 @@
 <footer>
   <div id="datetime"></div>
   <div>
-   <!-- <a href="mailto:nicola.cusanelli@example.com">nicola.cusanelli@example.com</a> -->
+    <a href="mailto:cusnic451@gmail.com">info.nicolacusanelli@gmail.com</a>
   </div>
 </footer>
 
+<!---
+<footer>
+  <div id="datetime"></div>
+  <div></div>
+</footer>
+-->
 <script>
   function updateDateTime() {
     const now = new Date();
