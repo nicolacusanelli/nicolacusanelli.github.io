@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomia: Il Nostro Universo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #0b0c10;
+            color: #e0e0e0;
+        }
+        header {
+            background: #1f2833;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            color: #66fcf1;
+        }
+        nav {
+            background: #0b0c10;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav a {
+            color: #45a29e;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        h2 {
+            color: #66fcf1;
+            border-bottom: 2px solid #45a29e;
+            padding-bottom: 5px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .card {
+            background: #1f2833;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .card h3 a {
+            color: #a6f1e0; /* colore link gradevole */
+            text-decoration: none;
+        }
+        .card h3 a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background: #1f2833;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            color: #66fcf1;
+        }
+        .highlight {
+            color: #45a29e;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Astronomia: Il Nostro Universo</h1>
+    <p>Scopri il Sole, i pianeti, le stelle e le missioni spaziali che esplorano il cosmo</p>
+</header>
+
+<nav>
+    <a href="#sistema-solare">Sistema Solare</a>
+    <a href="#stelle">Stelle</a>
+    <a href="#missioni">Missioni Spaziali</a>
+    <a href="#curiosita">Curiosità</a>
+</nav>
+
+<section id="introduzione">
+    <h2>Introduzione</h2>
+    <p>L'astronomia è la scienza che studia il cielo e l'universo. Ci permette di comprendere l'origine delle stelle, il funzionamento dei pianeti e le meraviglie dello spazio. Dall'osservazione del Sole alla scoperta di nuovi mondi, l'astronomia ci invita a esplorare l'infinito.</p>
+</section>
+
+<section id="sistema-solare">
+    <h2>Il Sistema Solare</h2>
+
+<!--
+            <figure>
+               <img src="../img/img1_astronomy.jpg" alt="Immagine del Sole" 
+               style="display: block; margin: 0 auto; width: 500px; height: auto;" />
+"https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg"
+                <figcaption style="max-width: 500px; margin: 0 auto; text-align: center;">
+                    Rappresentazione del Sistema Solare 
+                    (non in scala – in realtà molto, molto distante dalla scala
+                     reale) 
+                      creare un’immagine in scala del sistema solare con rappresentazioni
+                    dettagliate di tutti i suoi corpi principali non sarebbe fattibile – 
+                    vedi modello del sistema solare)
+                    che mostra il Sole, i Pianeti Interni, la Fascia degli Asteroidi,
+                    i Pianeti Esterni e una cometa.
+                    <small>Crediti: NASA</small>
+                </figcaption>
+            </figure>-->
+
+<figure style="text-align: center; margin: 20px 0;">
+    <img src="../img/img1_astronomy.jpg" 
+         alt="Immagine del Sole" 
+         style="width: 600px; height: auto; display: block; margin: 0 auto;" />
+    <figcaption style="margin-top: 10px; font-size: 1em; color: rgb(174, 174, 174); text-align: justify;" >
+        Rappresentazione del Sistema Solare (non in scala – in realtà molto, molto distante dalla scala reale) 
+        che mostra il Sole, i Pianeti Interni, la Fascia degli Asteroidi, i Pianeti Esterni e una cometa.
+        <small>(Crediti: NASA)</small>
+    </figcaption>
+</figure>
+
+    <div class="card">
+        <h3><a href="../sun/sun.html" target="_blank">Il Sole</a></h3>
+        <p>Il Sole è una stella di tipo G2V, il cuore del nostro sistema solare. Produce energia attraverso la <span class="highlight">fusione nucleare</span>, emettendo luce e calore essenziali per la vita sulla Terra. Il suo ciclo di 11 anni influenza il clima e le attività spaziali.</p>
+        <img src="https://solarsystem.nasa.gov/system/stellar_objects/images/10_sun.jpg" alt="Il Sole">
+    </div>
+
+    <div class="card">
+        <h3><a href="planets/planets.html" target="_blank">I Pianeti</a></h3>
+        <p>Il nostro sistema solare ha otto pianeti, suddivisi in:</p>
+        <ul>
+            <li><span class="highlight">Pianeti rocciosi:</span> Mercurio, Venere, Terra, Marte</li>
+            <li><span class="highlight">Giganti gassosi:</span> Giove, Saturno, Urano, Nettuno</li>
+        </ul>
+        <p>Ogni pianeta ha caratteristiche uniche: dagli anelli di Saturno alla Grande Macchia Rossa di Giove, fino ai vulcani attivi su Marte.</p>
+        <img src="https://solarsystem.nasa.gov/system/basic_html_elements/11557_PIA24415-16.jpg" alt="I pianeti del sistema solare">
+    </div>
+
+    <div class="card">
+        <h3><a href="minor-bodies/minor-bodies.html" target="_blank">Corpi Minori</a></h3>
+        <p>Asteroidi, comete e meteore popolano il sistema solare esterno, insieme alla <span class="highlight">fascia di Kuiper</span> e alla nube di Oort, zone ricche di piccoli corpi ghiacciati.</p>
+        <img src="https://solarsystem.nasa.gov/system/basic_html_elements/11577_PIA22558_main.jpg" alt="Cometa">
+    </div>
+</section>
+
+<section id="stelle">
+    <h2>Le Stelle</h2>
+    <p>Le stelle nascono da nubi molecolari e seguono cicli di vita diversi a seconda della loro massa. Possono diventare nane bianche, stelle di neutroni o buchi neri. Il nostro Sole, ad esempio, è a metà del suo ciclo vitale.</p>
+    <img src="https://solarsystem.nasa.gov/system/basic_html_elements/11556_PIA23135.jpg" alt="Nebulosa Stellare">
+</section>
+
+<section id="missioni">
+    <h2>Missioni Spaziali</h2>
+    <p>Le missioni spaziali ci hanno permesso di esplorare il sistema solare e l'universo:</p>
+    <ul>
+        <li><span class="highlight">Voyager:</span> esplorazione dei pianeti esterni</li>
+        <li><span class="highlight">Apollo:</span> missioni lunari</li>
+        <li><span class="highlight">Hubble e James Webb:</span> telescopi spaziali che osservano le galassie lontane</li>
+        <li><span class="highlight">Perseverance:</span> esplora Marte alla ricerca di tracce di vita passata</li>
+    </ul>
+    <img src="https://solarsystem.nasa.gov/system/basic_html_elements/11558_mars_rover.jpg" alt="Rover su Marte">
+</section>
+
+<section id="curiosita">
+    <h2>Curiosità</h2>
+    <ul>
+        <li>Il cielo appare blu sulla Terra a causa della <span class="highlight">diffusione Rayleigh</span>.</li>
+        <li>Un giorno su Marte dura circa 24 ore e 39 minuti.</li>
+        <li>Gli scienziati studiano la possibilità di colonizzare altri pianeti in futuro.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>Risorse: <a href="https://www.nasa.gov" target="_blank" style="color:#66fcf1;">NASA</a> | <a href="https://www.esa.int" target="_blank" style="color:#66fcf1;">ESA</a> | <a href="https://www.inaf.it" target="_blank" style="color:#66fcf1;">INAF</a></p>
+    <p>&copy; 2025 Astronomia Divulgativa</p>
+</footer>
+
+</body>
+</html>
