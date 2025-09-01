@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E‑learning — MetEd | Corsi completati</title>
+  <meta name="description" content="Raccolta dei corsi MetEd organizzati per ricerca, filtri e ordinamento." />
+  <style>
+    :root{
+      --bg:#0b0f16;            /* scuro, elegante */
+      --panel:#121826;         /* card */
+      --soft:#1a2336;          /* hover/alt */
+      --text:#e6ebf2;          /* primario */
+      --muted:#9fb0c3;         /* secondario */
+      --accent:#7cc4ff;        /* accento */
+      --chip:#22314d;          /* chip bg */
+      --ring: #2d3b59;         /* bordo */
+      --ok:#3ddc84;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,var(--bg),#0e1421 40%, #0b0f16);
+      color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    a{color:inherit}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    header{
+      display:grid; gap:8px; margin-bottom:18px;
+    }
+    header h1{font-size:clamp(1.6rem, 2.2vw + 1rem, 2.4rem); margin:0; letter-spacing:.2px}
+    header p{margin:0;color:var(--muted)}
+
+    .toolbar{
+      display:grid; gap:12px; grid-template-columns:1fr; align-items:center; margin:18px 0 8px;
+    }
+    @media (min-width:720px){
+      .toolbar{grid-template-columns: 1fr auto auto;}
+    }
+    .field{position:relative}
+    .field input, .field select{
+      width:100%; background:var(--panel); color:var(--text); border:1px solid var(--ring); border-radius:14px; padding:12px 14px; outline:none;
+    }
+    .field input::placeholder{color:#94a3b8}
+    .count{color:var(--muted); font-size:.95rem; text-align:right}
+
+    .grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:10px}
+    @media (min-width:680px){
+      .grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+    }
+    @media (min-width:1024px){
+      .grid{grid-template-columns: repeat(3, minmax(0,1fr));}
+    }
+
+    .card{
+      background:linear-gradient(180deg, var(--panel), var(--soft));
+      border:1px solid var(--ring); border-radius:18px; padding:16px; display:flex; flex-direction:column; gap:8px; transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+    .title{font-weight:650; letter-spacing:.2px}
+    .meta{display:flex; gap:10px; align-items:center; flex-wrap:wrap; color:var(--muted); font-size:.95rem}
+    .chip{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:var(--chip); border:1px solid var(--ring); font-size:.85rem; color:#cfe2ff}
+    .date{margin-left:auto; color:#c7d2e0}
+    .provider{color:#a5b8cc}
+
+    .footer{margin:26px 0 6px; color:var(--muted); font-size:.92rem; text-align:center}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>E‑learning · MetEd</h1>
+      <p>Elenco dei corsi MetEd che ho seguito. Cerca, filtra per categoria e ordina per data o titolo.</p>
+    </header>
+
+    <section class="toolbar" aria-label="Strumenti di ricerca e filtro">
+      <label class="field" for="q">
+        <span class="sr-only">Cerca corsi</span>
+        <input id="q" type="search" placeholder="Cerca per titolo o parole chiave…" autocomplete="off" />
+      </label>
+      <label class="field" for="cat">
+        <span class="sr-only">Categoria</span>
+        <select id="cat">
+          <option value="">Tutte le categorie</option>
+          <option>Meteorologia</option>
+          <option>Climatologia</option>
+          <option>Telerilevamento</option>
+          <option>Geodesia & Cartografia</option>
+          <option>Oceanografia</option>
+          <option>Vulcanologia</option>
+          <option>GNSS</option>
+          <option>Idrografia</option>
+        </select>
+      </label>
+      <label class="field" for="sort">
+        <span class="sr-only">Ordina</span>
+        <select id="sort">
+          <option value="date-desc">Ordina: Data ↓ (recenti)</option>
+          <option value="date-asc">Ordina: Data ↑ (meno recenti)</option>
+          <option value="title-asc">Ordina: Titolo A→Z</option>
+          <option value="title-desc">Ordina: Titolo Z→A</option>
+        </select>
+      </label>
+      <div class="count" id="count" aria-live="polite"></div>
+    </section>
+
+    <section class="grid" id="list" aria-label="Elenco corsi"></section>
+
+    <p class="footer">Fornitore: <strong>MetEd/COMET</strong>. Le date indicano l'ultima revisione del corso pubblicata su MetEd.</p>
+  </div>
+
+  <script>
+    const rawCourses = [
+      { title: "Foundations of Global Navigation Satellite Systems (GNSS)", date: "2018.10.09", category: "GNSS" },
+      { title: "Gravity for Geodesy I: Foundations", date: "2017.04.01", category: "Geodesia & Cartografia" },
+      { title: "Introduction to Climatology", date: "2017.09.30", category: "Climatologia" },
+      { title: "Introduction to Electromagnetic and Electro-Optic Propagation", date: "2015-10-26", category: "Telerilevamento" },
+      { title: "Introduction to Geodesy and Mapping", date: "2016-03-17", category: "Geodesia & Cartografia" },
+      { title: "Introduction to Hydrography", date: "2018-01-21", category: "Idrografia" },
+      { title: "Met 101: Introduction to the Atmosphere", date: "2017-10-01", category: "Meteorologia" },
+      { title: "Microwave Remote Sensing: Overview, 2nd Edition", date: "2015-09-03", category: "Telerilevamento" },
+      { title: "Remote Sensing Using Satellites, 2nd Edition", date: "2015-07-07", category: "Telerilevamento" },
+      { title: "S-290 Unit 4: Basic Weather Processes", date: "2015-07-07", category: "Meteorologia" },
+      { title: "Sea Level Change: Datums and Terminology", date: "2017-02-02", category: "Oceanografia" },
+      { title: "The Science of Radio Occultation and the COSMIC Mission", date: "2018-10-09", category: "GNSS" },
+      { title: "Understanding Heights and Vertical Datums", date: "2016-03-11", category: "Geodesia & Cartografia" },
+      { title: "Volcanic Ash: Observation Tools and Dispersion Models", date: "2018-09-30", category: "Vulcanologia" },
+      { title: "Volcanic Ash: Volcanism", date: "2018. 09.29", category: "Vulcanologia" },
+    ];
+
+    function normalizeDate(d){
+      // accetta formati con punti, spazi e trattini: YYYY[.- ]MM[.- ]DD
+      if(!d) return null;
+      const s = String(d).replaceAll(" ", "").replaceAll(".", "-");
+      // ora dovremmo avere YYYY-MM-DD
+      const iso = /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : null;
+      if(!iso) return null;
+      // costruisci un oggetto Date in modo robusto (usa UTC per stabilità)
+      const [Y,M,D] = iso.split("-").map(Number);
+      const dt = new Date(Date.UTC(Y, M-1, D));
+      return {iso, dt};
+    }
+
+    const courses = rawCourses.map(c=>{
+      const n = normalizeDate(c.date);
+      return {
+        ...c,
+        dateISO: n?.iso || c.date,
+        time: n?.dt?.getTime?.() ?? 0,
+      };
+    });
+
+    const list = document.getElementById('list');
+    const q = document.getElementById('q');
+    const cat = document.getElementById('cat');
+    const sortSel = document.getElementById('sort');
+    const count = document.getElementById('count');
+
+    function formatDateISO(iso){
+      const n = normalizeDate(iso);
+      if(!n) return iso; // fallback a stringa originale
+      return n.dt.toLocaleDateString('it-IT', { year:'numeric', month:'2-digit', day:'2-digit' });
+    }
+
+    function render(){
+      const term = q.value.trim().toLowerCase();
+      const catVal = cat.value;
+      const sortVal = sortSel.value;
+
+      let rows = courses.filter(c=>{
+        const matchesText = !term || c.title.toLowerCase().includes(term);
+        const matchesCat = !catVal || c.category === catVal;
+        return matchesText && matchesCat;
+      });
+
+      switch(sortVal){
+        case 'date-asc': rows.sort((a,b)=>a.time-b.time); break;
+        case 'title-asc': rows.sort((a,b)=>a.title.localeCompare(b.title,'it')); break;
+        case 'title-desc': rows.sort((a,b)=>b.title.localeCompare(a.title,'it')); break;
+        case 'date-desc':
+        default:
+          rows.sort((a,b)=>b.time-a.time);
+      }
+
+      list.innerHTML = '';
+      rows.forEach(c=>{
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="title">${c.title}</div>
+          <div class="meta">
+            <span class="chip" title="Categoria">${c.category}</span>
+            <span class="provider" title="Fornitore">MetEd/COMET</span>
+            <span class="date" title="Data corso">${formatDateISO(c.dateISO)}</span>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+
+    count.textContent = `${rows.length} ${rows.length === 1 ? 'corso' : 'corsi'} ${rows.length === 1 ? 'mostrato' : 'mostrati'}`;
+
+    }
+
+    q.addEventListener('input', render);
+    cat.addEventListener('change', render);
+    sortSel.addEventListener('change', render);
+
+    render();
+  </script>
+</body>
+</html>

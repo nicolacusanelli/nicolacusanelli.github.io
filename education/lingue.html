@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lingue — Sezione per Education</title>
+  <style>
+    :root{
+      --text:#f8fafc;         /* testo primario chiaro per sfondo scuro */
+      --muted:#cbd5e1;        /* testo secondario */
+      --chip-bg:#1e293b;      /* badge */
+      --chip-br:#334155;      /* bordo badge */
+      --card-bg:#0f172a;      /* sfondo card */
+      --card-br:#334155;      /* bordo card */
+      --body-bg:#0f172a;      /* sfondo pagina */
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--body-bg); color:var(--text)}
+    .lang-section{max-width:900px; margin:24px auto; padding:0 16px}
+    .title{margin:0 0 8px; font-size:clamp(1.4rem,1.2rem + 1vw,1.8rem); color:var(--text)}
+    .intro{margin:0 0 16px; color:var(--muted)}
+
+    .grid{display:grid; gap:14px}
+    @media (min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+    .card{background:var(--card-bg); border:1px solid var(--card-br); border-radius:14px; padding:14px;}
+    .card h3{margin:0 0 6px; font-size:1.1rem; color:var(--text)}
+
+    .skills{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 10px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:4px 10px; border-radius:999px; background:var(--chip-bg); border:1px solid var(--chip-br); font-size:.9rem; color:var(--text)}
+    .chip .lvl{font-weight:700}
+    .muted{color:var(--muted)}
+    .whenwhere{margin:8px 0 0; font-size:.95rem; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <!-- Copia il contenitore <section class="lang-section"> dentro education.html dove preferisci -->
+  <section class="lang-section" aria-labelledby="lingue-title">
+    <h2 id="lingue-title" class="title">Competenze linguistiche in Inglese e Cinese</h2>
+    <p class="intro">Competenze secondo il Quadro Comune Europeo di Riferimento (QCER/CEFR).</p>
+
+    <div class="grid">
+      <!-- ENGLISH -->
+      <article class="card" aria-labelledby="lang-en-title">
+        <h3 id="lang-en-title">English</h3>
+        <div class="skills">
+          <span class="chip" title="Comprensione orale"><span>Listening</span> <span class="lvl">B1</span></span>
+          <span class="chip" title="Comprensione scritta"><span>Reading</span> <span class="lvl">B1</span></span>
+          <span class="chip" title="Interazione orale"><span>Spoken interaction</span> <span class="lvl">B1</span></span>
+          <span class="chip" title="Produzione orale"><span>Spoken production</span> <span class="lvl">B1</span></span>
+          <span class="chip" title="Scrittura"><span>Writing</span> <span class="lvl">B1</span></span>
+        </div>
+        <p class="muted">Attestazione di livello funzionale B1 nelle 5 abilità.</p>
+        <p class="whenwhere">04/2005 – 12/2006 · English language course — Wall Street Institute, Napoli (Italia)</p>
+      </article>
+
+      <!-- CHINESE -->
+      <article class="card" aria-labelledby="lang-zh-title">
+        <h3 id="lang-zh-title">Chinese</h3>
+        <div class="skills">
+          <span class="chip" title="Corso base"><span>First level course</span> <span class="lvl">(50h)</span></span>
+        </div>
+        <p class="whenwhere">07/03/2011 – 07/09/2011 · Chinese language course (first level, 50 ore) — Istituto Confucio & Università di Napoli “L'Orientale”, Palazzo del Mediterraneo, Napoli (Italia)</p>
+      </article>
+    </div>
+  </section>
+</body>
+</html>

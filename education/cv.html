@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nome Cognome — CV</title>
+  <meta name="description" content="Curriculum vitae di Nome Cognome: formazione, training, workshops, schools, certificazioni, lingue, e‑learning." />
+  <style>
+    :root{
+      --bg: #0b0c0f;
+      --card: #11131a;
+      --muted: #c9d1d9;
+      --text: #e6edf3;
+      --acc: #7aa2f7;
+      --chip: #1b2030;
+      --hr: #1f2333;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#fcfcfd; --card:#ffffff; --muted:#374151; --text:#111827; --acc:#0f62fe; --chip:#f2f4f8; --hr:#e5e7eb; }
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background:radial-gradient(1200px 600px at 20% -10%, rgba(122,162,247,.18), transparent),
+                         radial-gradient(1000px 500px at 120% 10%, rgba(56,189,248,.14), transparent), var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    .wrap{max-width: 980px; margin: 0 auto; padding: 28px 18px 64px;}
+    header{display:flex; gap:24px; align-items:center; margin-bottom: 28px;}
+    .avatar{width:96px; height:96px; border-radius:20px; background:var(--chip); overflow:hidden; flex:0 0 auto;}
+    .avatar img{width:100%; height:100%; object-fit:cover;}
+    h1{font-size: clamp(26px, 4vw, 40px); line-height:1.15; margin:0 0 6px;}
+    .subtitle{color:var(--muted); margin-top:4px;}
+    .contact{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:var(--chip); color:var(--muted); font-size:14px;}
+
+    nav{position:sticky; top:0; backdrop-filter:saturate(140%) blur(6px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom:1px solid var(--hr); z-index:5}
+    .nav-inner{max-width:980px; margin:0 auto; padding:8px 18px; display:flex; gap:14px; flex-wrap:wrap}
+    nav a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:10px}
+    nav a:hover, nav a:focus{background:var(--chip); color:var(--text)}
+
+    section{background:var(--card); border:1px solid var(--hr); padding:20px; border-radius:20px; margin-top:18px}
+    section h2{margin:0 0 14px; font-size:20px}
+    .item{display:grid; grid-template-columns: 140px 1fr; gap:14px; padding:14px 0; border-top:1px dashed var(--hr)}
+    .item:first-child{border-top:0; padding-top:0}
+    .when{color:var(--muted); font-size:14px}
+    .title{font-weight:600}
+    .meta{color:var(--muted)}
+    .bullets{margin:8px 0 0 0; padding-left:18px}
+
+    .twocol{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
+    @media (max-width: 720px){ .item{grid-template-columns:1fr} .twocol{grid-template-columns:1fr} header{flex-direction:column; align-items:flex-start} .avatar{width:80px; height:80px;}}
+
+    .lang-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:12px}
+    .lang{display:flex; justify-content:space-between; align-items:center; padding:10px 12px; border:1px dashed var(--hr); border-radius:14px}
+
+    .badges{display:flex; flex-wrap:wrap; gap:8px}
+    .badge{background:var(--chip); color:var(--muted); border:1px solid var(--hr); padding:6px 10px; border-radius:999px; font-size:14px}
+
+    footer{opacity:.8; text-align:center; margin-top:28px}
+    .btn{display:inline-block; padding:10px 14px; border-radius:12px; border:1px solid var(--hr); background:var(--chip); color:var(--text); text-decoration:none}
+
+    /* Stampa */
+    @media print{
+      body{background:white}
+      nav, .btn, .avatar{display:none!important}
+      section{break-inside:avoid}
+      .wrap{max-width:100%; padding:0}
+    }
+  </style>
+  <!-- Dati strutturati Schema.org (modifica i campi) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nome Cognome",
+    "jobTitle": "Ruolo/Qualifica",
+    "url": "https://tuodominio.example/cv",
+    "email": "mailto:tuo@email.example",
+    "sameAs": ["https://www.linkedin.com/in/username", "https://github.com/username"]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header aria-label="Intestazione profilo">
+      <div class="avatar" aria-hidden="true"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop" alt=""/></div>
+      <div>
+        <h1>Nome Cognome</h1>
+        <div class="subtitle">Ruolo/Qualifica • Città, Paese</div>
+        <div class="contact">
+          <span class="chip">📧 tuo@email.example</span>
+          <a class="chip" href="https://www.linkedin.com/in/username" rel="me noopener" target="_blank">in/username</a>
+          <a class="chip" href="https://github.com/username" rel="me noopener" target="_blank">github.com/username</a>
+          <a class="chip" href="#" download>⬇️ Scarica PDF</a>
+        </div>
+      </div>
+    </header>
+
+    <nav aria-label="Sezioni del CV">
+      <div class="nav-inner">
+        <a href="#about">Profilo</a>
+        <a href="#education">Education</a>
+        <a href="#training">Training</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#schools">Schools</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#languages">Lingue</a>
+        <a href="#elearning">E‑learning</a>
+      </div>
+    </nav>
+
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">Profilo</h2>
+      <p>Breve bio di 3–4 righe focalizzata sul tuo valore: area di ricerca/settore, interessi principali, risultati chiave (numeri se possibile), e l'obiettivo professionale.</p>
+      <div class="badges" aria-label="Parole chiave">
+        <span class="badge">Parola chiave 1</span>
+        <span class="badge">Parola chiave 2</span>
+        <span class="badge">Parola chiave 3</span>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="edu-h">
+      <h2 id="edu-h">Education</h2>
+      <div class="item">
+        <div class="when">2021 — 2023</div>
+        <div>
+          <div class="title">Laurea Magistrale in X</div>
+          <div class="meta">Università degli Studi di Y — <em>110/110 e lode</em></div>
+          <ul class="bullets">
+            <li>Tesi: titolo della tesi; relatore: Prof. Nome Cognome.</li>
+            <li>Principali esami/aree: A, B, C.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2018 — 2021</div>
+        <div>
+          <div class="title">Laurea Triennale in Z</div>
+          <div class="meta">Università di W — <em>110/110</em></div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2024</div>
+        <div>
+          <div class="title">Corso di perfezionamento universitario in ABC</div>
+          <div class="meta">Ateneo / Dipartimento</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="training" aria-labelledby="training-h">
+      <h2 id="training-h">Training (Professional Development)</h2>
+      <div class="item">
+        <div class="when">2024</div>
+        <div>
+          <div class="title">Corso Specialistico: Titolo del corso</div>
+          <div class="meta">Ente erogatore • 30 ore • online/presenza</div>
+          <ul class="bullets">
+            <li>Competenze acquisite: …</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2023</div>
+        <div>
+          <div class="title">Seminario avanzato su XYZ</div>
+          <div class="meta">Istituto/Organizzazione</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workshops" aria-labelledby="workshops-h">
+      <h2 id="workshops-h">Workshops</h2>
+      <div class="item">
+        <div class="when">giu 2025</div>
+        <div>
+          <div class="title">Titolo workshop</div>
+          <div class="meta">Conferenza/Evento • città</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="schools" aria-labelledby="schools-h">
+      <h2 id="schools-h">Schools (Summer/Winter/Scuole specialistiche)</h2>
+      <div class="item">
+        <div class="when">set 2024</div>
+        <div>
+          <div class="title">Summer School ABC</div>
+          <div class="meta">Ente • durata • borsa (se rilevante)</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" aria-labelledby="cert-h">
+      <h2 id="cert-h">Certifications</h2>
+      <div class="item">
+        <div class="when">2022</div>
+        <div>
+          <div class="title">Nome certificazione (es. TOEFL 110/120)</div>
+          <div class="meta">Organismo certificatore • ID (se presente) • scadenza</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2021</div>
+        <div>
+          <div class="title">ECDL/ICDL Full Standard</div>
+          <div class="meta">AICA</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="languages" aria-labelledby="lang-h">
+      <h2 id="lang-h">Lingue</h2>
+      <div class="lang-grid">
+        <div class="lang"><strong>Italiano</strong><span class="meta">Madrelingua</span></div>
+        <div class="lang"><strong>Inglese</strong><span class="meta">C1 (CEFR)</span></div>
+        <div class="lang"><strong>Francese</strong><span class="meta">B2 (CEFR)</span></div>
+      </div>
+    </section>
+
+    <section id="elearning" aria-labelledby="ele-h">
+      <h2 id="ele-h">E‑learning / MOOC selezionati</h2>
+      <div class="item">
+        <div class="when">2025</div>
+        <div>
+          <div class="title">Nome corso — Piattaforma</div>
+          <div class="meta">attestato conseguito • ore</div>
+          <ul class="bullets">
+            <li>Focus/Project: …</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2024</div>
+        <div>
+          <div class="title">Nome corso — Piattaforma</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Nome Cognome — Ultimo aggiornamento: <time id="updated" datetime="2025-08-14">14/08/2025</time></p>
+      <p><a class="btn" href="#about">Torna su ↑</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // aggiorna automaticamente l'anno corrente nel footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

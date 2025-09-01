@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E‑learning — ESRI | Corsi completati</title>
+  <meta name="description" content="Raccolta dei corsi ESRI organizzati per ricerca, filtri e ordinamento." />
+  <style>
+    :root{
+      --bg:#101312;            /* scuro, neutro */
+      --panel:#171c1a;         /* card */
+      --soft:#1d2521;          /* hover/alt */
+      --text:#e8ede9;          /* primario */
+      --muted:#9ea9a4;         /* secondario */
+      --accent:#6fcf97;        /* verde accento */
+      --chip:#223129;          /* chip bg */
+      --ring: #2e3d36;         /* bordo */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,var(--bg),#131a18 40%, #101312);
+      color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    a{color:inherit}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    header{display:grid; gap:8px; margin-bottom:18px;}
+    header h1{font-size:clamp(1.6rem, 2.2vw + 1rem, 2.4rem); margin:0; letter-spacing:.2px}
+    header p{margin:0;color:var(--muted)}
+
+    .toolbar{display:grid; gap:12px; grid-template-columns:1fr; align-items:center; margin:18px 0 8px;}
+    @media (min-width:720px){.toolbar{grid-template-columns: 1fr auto auto;}}
+    .field{position:relative}
+    .field input, .field select{width:100%; background:var(--panel); color:var(--text); border:1px solid var(--ring); border-radius:14px; padding:12px 14px; outline:none;}
+    .field input::placeholder{color:#94a3b8}
+    .count{color:var(--muted); font-size:.95rem; text-align:right}
+
+    .grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:10px}
+    @media (min-width:680px){.grid{grid-template-columns: repeat(2, minmax(0,1fr));}}
+    @media (min-width:1024px){.grid{grid-template-columns: repeat(3, minmax(0,1fr));}}
+
+    .card{background:linear-gradient(180deg, var(--panel), var(--soft)); border:1px solid var(--ring); border-radius:18px; padding:16px; display:flex; flex-direction:column; gap:8px; transition: transform .18s ease, box-shadow .18s ease;}
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+    .title{font-weight:650; letter-spacing:.2px}
+    .meta{display:flex; gap:10px; align-items:center; flex-wrap:wrap; color:var(--muted); font-size:.95rem}
+    .chip{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:var(--chip); border:1px solid var(--ring); font-size:.85rem; color:#cfe2ff}
+    .date{margin-left:auto; color:#c7d2e0}
+    .provider{color:#a5b8cc}
+
+    .footer{margin:26px 0 6px; color:var(--muted); font-size:.92rem; text-align:center}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>E‑learning · ESRI</h1>
+      <p>Elenco dei corsi ESRI che ho seguito. Cerca, filtra per categoria e ordina per data o titolo.</p>
+    </header>
+
+    <section class="toolbar" aria-label="Strumenti di ricerca e filtro">
+      <label class="field" for="q">
+        <span class="sr-only">Cerca corsi</span>
+        <input id="q" type="search" placeholder="Cerca per titolo o parole chiave…" autocomplete="off" />
+      </label>
+      <label class="field" for="sort">
+        <span class="sr-only">Ordina</span>
+        <select id="sort">
+          <option value="date-desc">Ordina: Data ↓ (recenti)</option>
+          <option value="date-asc">Ordina: Data ↑ (meno recenti)</option>
+          <option value="title-asc">Ordina: Titolo A→Z</option>
+          <option value="title-desc">Ordina: Titolo Z→A</option>
+        </select>
+      </label>
+      <div class="count" id="count" aria-live="polite"></div>
+    </section>
+
+    <section class="grid" id="list" aria-label="Elenco corsi"></section>
+
+    <p class="footer">Fornitore: <strong>ESRI</strong>. Le date indicano l'ultima revisione o pubblicazione del corso.</p>
+  </div>
+
+  <script>
+    const rawCourses = [
+      { title: "Getting Started with ArcGIS Pro Web Course", date: "2016-10-19" },
+      { title: "Earth Imagery at Work MOOC", date: "2016-10-14" },
+      { title: "Telling Stories with GIS Maps Web Course", date: "2016-09-30" },
+      { title: "Getting Information from a GIS Map Web Course", date: "2016-09-28" },
+      { title: "Exploring GIS Maps Web Course", date: "2016-09-26" },
+      { title: "Getting Started with GIS Web Course", date: "2016-09-16" },
+      { title: "Using Python in ArcGIS Desktop 10 Web Course", date: "2013-03-08" },
+      { title: "Python for Everyone Web Course", date: "2013-02-15" },
+      { title: "Getting Started with GIS (for ArcGIS 10.0) Web Course", date: "2011-09-14" },
+      { title: "Basics of Geographic Coordinate Systems Web Course", date: "2011-09-02" },
+      { title: "Using ArcMap in ArcGIS Desktop 10 Web Course", date: "2011-08-05" },
+      { title: "Turning Data into Information Using ArcGIS 10.0", date: "2011-06-24" }
+    ];
+
+    function normalizeDate(d){
+      const s = String(d).replaceAll(" ", "").replaceAll(".", "-");
+      const iso = /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : null;
+      if(!iso) return null;
+      const [Y,M,D] = iso.split("-").map(Number);
+      const dt = new Date(Date.UTC(Y, M-1, D));
+      return {iso, dt};
+    }
+
+    const courses = rawCourses.map(c=>{
+      const n = normalizeDate(c.date);
+      return {
+        ...c,
+        dateISO: n?.iso || c.date,
+        time: n?.dt?.getTime?.() ?? 0,
+      };
+    });
+
+    const list = document.getElementById('list');
+    const q = document.getElementById('q');
+    const sortSel = document.getElementById('sort');
+    const count = document.getElementById('count');
+
+    function formatDateISO(iso){
+      const n = normalizeDate(iso);
+      if(!n) return iso;
+      return n.dt.toLocaleDateString('it-IT', { year:'numeric', month:'2-digit', day:'2-digit' });
+    }
+
+    function render(){
+      const term = q.value.trim().toLowerCase();
+      const sortVal = sortSel.value;
+
+      let rows = courses.filter(c=>{
+        const matchesText = !term || c.title.toLowerCase().includes(term);
+        return matchesText;
+      });
+
+      switch(sortVal){
+        case 'date-asc': rows.sort((a,b)=>a.time-b.time); break;
+        case 'title-asc': rows.sort((a,b)=>a.title.localeCompare(b.title,'it')); break;
+        case 'title-desc': rows.sort((a,b)=>b.title.localeCompare(a.title,'it')); break;
+        case 'date-desc':
+        default:
+          rows.sort((a,b)=>b.time-a.time);
+      }
+
+      list.innerHTML = '';
+      rows.forEach(c=>{
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="title">${c.title}</div>
+          <div class="meta">
+            <span class="chip" title="Categoria">GIS</span>
+            <span class="provider" title="Fornitore">ESRI</span>
+            <span class="date" title="Data corso">${formatDateISO(c.dateISO)}</span>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+
+     count.textContent = `${rows.length} ${rows.length === 1 ? 'corso' : 'corsi'} ${rows.length === 1 ? 'mostrato' : 'mostrati'}`;
+
+    }
+
+    q.addEventListener('input', render);
+    sortSel.addEventListener('change', render);
+
+    render();
+  </script>
+</body>
+</html>

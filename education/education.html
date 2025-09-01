@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Education</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh; 
+        }
+
+
+
+
+        nav {
+            width: 220px;
+            background-color: #003366;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+
+
+    /* aggiunte per centrare */
+    display: flex;
+    flex-direction: column;   /* disposizione verticale */
+    align-items: center;      /* centra orizzontalmente i link */
+    padding-top: 60px;        /* sposta tutti i link un po’ più giù */
+
+
+        }
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 12px 0;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #f5deb3;
+        }
+
+
+
+
+        .content-wrapper {
+            position: relative;
+            width: 700px;
+            margin-left: calc(220px + ((100vw - 220px - 700px) / 2));
+            padding: 40px 40px 40px 30px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        header {
+            background-color: transparent;
+            padding: 0;
+            margin-bottom: 20px;
+            color: #003366;
+            text-align: center;
+        }
+        header h1 {
+            color: #003366;
+            display: inline-block;
+            border-bottom: 3px solid #003366;
+            padding-bottom: 5px;
+            margin: 0;
+            font-size: 2em;
+        }
+        section {
+            border-radius: 8px;
+            padding: 25px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            background-color: white;
+            border: 3px solid; /* cornice colorata */
+        }
+        section h2 {
+            margin-top: 0;
+            color: #003366;
+        }
+        section p {
+            white-space: pre-line;
+            margin-bottom: 0;
+        }
+
+        /* Colori cornice per ogni sezione */
+        section.education { border-color: rgb(166, 216, 100); }
+        section.training { border-color: rgba(90, 104, 212, 0.5); }
+        section.schools { border-color: rgb(100, 180, 220); }
+        section.workshops { border-color: rgb(240, 180, 100); }
+        section.certifications { border-color: rgb(200, 160, 240); }
+        section.IT-Skills { border-color: rgb(244, 246, 127); }
+        section.languages { border-color: rgb(255, 100, 100); }
+        section.elearning { border-color: rgb(180, 240, 180); }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .content-wrapper { width: auto; margin-left: 240px; padding: 20px; }
+        }
+        @media (max-width: 600px) {
+            nav { position: relative; width: 100%; height: auto; }
+            .content-wrapper { margin-left: 0; width: auto; padding: 20px; }
+        }
+
+
+.linkedin-icon {
+    display: flex;           /* usa flexbox */
+    justify-content: center; /* centra orizzontalmente */
+    margin-top: 50px;        /* distanza dal contenuto sopra */
+}
+.linkedin-icon svg {
+    width: 64px;
+    height: 64px;
+    transition: transform 0.3s;
+}
+.linkedin-icon svg:hover {
+    transform: scale(1.1);
+}
+
+
+.education h2 {
+    margin-top: 30px;   /* spazio sopra h2 */
+    margin-bottom: 10px; /* spazio sotto h2 verso il paragrafo */
+}
+
+.education h2:first-of-type {
+    margin-top: 10; /* il primo h2 non ha margine superiore */
+}
+
+.education p {
+    margin-top: 0; /* evita il collasso dei margini con h2 */
+    margin-bottom: 80px; /* spazio tra paragrafi e prossimo h2 */
+}
+
+
+
+.training h2 {
+    margin-top: 30px;   /* spazio sopra h2 */
+    margin-bottom: 10px; /* spazio sotto h2 verso il paragrafo */
+}
+
+.training h2:first-of-type {
+    margin-top: 10; /* il primo h2 non ha margine superiore */
+}
+
+.training p {
+    margin-top: 0; /* evita il collasso dei margini con h2 */
+    margin-bottom: 80px; /* spazio tra paragrafi e prossimo h2 */
+}
+
+
+
+.schools h2 {
+    margin-top: 30px;   /* spazio sopra h2 */
+    margin-bottom: 10px; /* spazio sotto h2 verso il paragrafo */
+}
+
+.schools h2:first-of-type {
+    margin-top: 10; /* il primo h2 non ha margine superiore */
+}
+
+.schools p {
+    margin-top: 0; /* evita il collasso dei margini con h2 */
+    margin-bottom: 80px; /* spazio tra paragrafi e prossimo h2 */
+}
+
+
+
+.workshops h2 {
+    margin-top: 80px;   /* spazio sopra h2 */
+    margin-bottom: 10px; /* spazio sotto h2 verso il paragrafo */
+}
+
+.workshops h2:first-of-type {
+    margin-top: 30px; /* il primo h2 non ha margine superiore */
+}
+
+.workshops p {
+    margin-top: 0; /* evita il collasso dei margini con h2 */
+    margin-bottom: 0px; /* spazio tra paragrafi e prossimo h2 */
+}
+
+
+
+
+.IT-Skills h2 {
+    margin-top: 80px;   /* spazio sopra h2 */
+    margin-bottom: 10px; /* spazio sotto h2 verso il paragrafo */
+}
+
+.IT-Skills h2:first-of-type {
+    margin-top: 30px; /* il primo h2 non ha margine superiore */
+}
+
+.IT-Skills p {
+    margin-top: 0; /* evita il collasso dei margini con h2 */
+    margin-bottom: 0px; /* spazio tra paragrafi e prossimo h2 */
+}
+
+/*
+.IT-Skills {
+    margin-bottom: 20px;     
+}
+/* riduce lo spazio tra questa sezione e la successiva */
+   
+   
+.elearning h2 {
+    margin-top: 80px;   /* spazio sopra h2 */
+    margin-bottom: 10px; /* spazio sotto h2 verso il paragrafo */
+}
+
+.elearning h2:first-of-type {
+    margin-top: 30px; /* il primo h2 non ha margine superiore */
+}
+
+.elearning p {
+    margin-top: 0; /* evita il collasso dei margini con h2 */
+    margin-bottom: 0px; /* spazio tra paragrafi e prossimo h2 */
+}
+
+
+
+   </style>
+
+
+
+</head>
+<body>
+    <nav>
+        <a href="../index.html">HOME</a>
+
+
+ <!--       
+        <a href="physics.html">Physics</a>
+        <a href="astronomy.html">Astronomy</a>
+        <a href="sun.html">Sun</a>
+        <a href="meteorology.html">Meteorology</a>
+        <a href="gis.html">GIS</a>
+        <a href="scrooge_mcduck.html">Scrooge McDuck</a>
+        <a href="correva.html">Correva l'Anno...</a>
+<hr>
+ <div style="height:3px; background-color:#f5deb3; margin:15px 0;"></div>
+       
+
+        <a href="nuovo_link.html" style="font-style: italic; color:yellow;">Workshops</a>
+        <a href="nuovo_link.html" style="font-style: italic; color:yellow;">Certifications</a>
+        <a href="nuovo_link.html" style="font-style: italic; color:yellow;">e-Learning</a>
+        <a href="nuovo_link.html" style="font-style: italic; color:yellow;">Languages</a>
+-->
+        <div style="width:100%;  height:3px; background-color:#e09e22; margin:15px 0;"></div>
+
+<div class="linkedin-wrapper">
+    <a href="https://www.linkedin.com/in/nicola-cusanelli-89352049" target="_blank" rel="noopener noreferrer">
+        <img src="../img/linkedin.jpg" alt="LinkedIn Profile" width="184" height="54">
+    </a>
+</div>
+
+    </nav>
+
+    <div class="content-wrapper">
+
+
+<header><h1>Education</h1></header>
+
+
+
+<section class="education">
+
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+    <img src="logo_unina.png" alt="Università di Napoli Federico II" style="height:60px;">
+
+    <h2 style="margin:0; text-align: justify;" >
+      Academic degree in Physics (4 years) <br>
+      study plan: theoretical physics
+    </h2>
+
+  </div>
+
+  <p style="text-align: justify;">
+    <em>Title of thesis: ‘’Teorie Gravitazionali in Extra Dimensioni”</em>
+    University of Naples Federico II, Faculty of Mathematics, Physics and Natural Sciences. "Complesso Universitario Monte S. Angelo", Naples (Italy), 25 Mar 2010.
+
+    <!--
+    <a href="abstract.pdf" target="_blank" style="color: blue; text-decoration: underline;">
+      📄 Abstract
+    </a>
+    -->
+    <a href="https://doi.org/10.5281/zenodo.17007267" target="_blank" style="color: blue; text-decoration: underline;">
+      📄 Slides
+    </a>
+    <a href="https://doi.org/10.5281/zenodo.17005669" target="_blank" style="color: blue; text-decoration: underline;">
+      📄 Teorie Gravitazionali in Extra Dimensioni
+    </a>
+
+  </p>
+
+</section>
+
+
+
+
+<header><h1>Training</h1></header>
+<section class="training">
+
+    <h2 style="text-align: justify;"> Aspetti metodologici e applicativi della tecnica InSAR per l'analisi del ground motion</h2>
+    <p style="text-align: justify;"> ISPRA - Istituto Superiore per la Protezione e la Ricerca Ambientale, Training Workshop 2022, online, 05 Oct 2022 – 18 Nov 2022.
+    </p>
+ 
+<h2 style="text-align: justify;"> Le Scienze della Sostenibilità </h2>
+<p  style="text-align: justify;">SAPIENZA Università di Roma - Facoltà di Ingegneria Civile e Industriale, online, 23 April 2022 – 01 Oct 2022. (6 crediti formativi)
+</p>
+
+<h2 style="text-align: justify;"> GIS and Science per il clima, la società e il territorio</h2>
+<p style="text-align: justify;" >University of Padua (Italy) and “Climate Justice: Centre of Excellence Jean Monnet”, online, 08 June 2022 – 07 Sept 2022.   
+</p>
+
+
+    <h2 style="text-align: justify;"> IV ESA-EARSeL course on Remote Sensing for Forest Fires</h2>
+    <p style="text-align: justify;"> Organized by the European Space Agency (ESA), the European Association of Remote Sensing Laboratories (EARSeL), and the Department of Earth and Environment, National Research Council (CNR), Frascati (Rome), Italy, 30 September – 1 October 2019.
+    </p>
+
+    <h2 style="text-align: justify;"> Water resource management with the FREEWAT platform integrated in QGIS</h2>
+    <p style="text-align: justify;"> University of Naples Federico II, Scuola Politecnica e delle Scienze di Base, Complesso Universitario di San Giovanni a Teduccio, Naples, Italy, 4–5 July 2017.        
+    </p>
+
+
+
+    <h2 style="text-align: justify;"> 3rd ESA-EARSeL course on remote sensing for archaeology</h2>
+    <p style="text-align: justify;"> Organized by the European Space Agency (ESA), the European Association of Remote Sensing Laboratories (EARSeL), and the Department of Earth and Environment, National Research Council (CNR),  Frascati (Rome), Italy, 9 Nov 2015–11 Nov 2015.
+    </p>
+
+</section>
+
+
+
+
+
+<header><h1>Schools</h1></header>
+<section class="schools">
+
+    <h2>Lucchin school 2016: PhD School of Astrophysics</h2>
+    <p style="text-align: justify;"> <em> Stellar Explosions: Novelty and Rarity – Cosmology with Large Surveys.</em>
+    INAF (National Institute for Astrophysics), OAC (Astronomical Observatory of Capodimonte), Naples, Italy, 23–27 May 2016.
+    </p>
+
+    <h2 style="text-align: justify;" >2015 IEEE Geoscience and Remote Sensing Society Summer School (GR4S)</h2>
+    <p style="text-align: justify;"><em> Data Fusion for Risk Mapping. </em>
+Department of Electrical, Computer and Biomedical Engineering, University of Pavia, Italy, 23–24 Jul 2015.
+    </p>
+
+<h2 style="text-align: justify;" > Gfg2 Summer School</h2>
+<p style="text-align: justify;"> <em> Fundamentals and applications of the Global Navigation Satellite Systems (GNSS) as a powerful tool for remote sensing and Earth observation. </em>
+    GFZ German Research Centre for Geosciences, Potsdam, (Germany), 1–3 Jul 2013.
+    <!--
+    <a href="abstract-space_technology_and_public_health.pdf" target="_blank" style="color: blue; text-decoration: underline;"> 
+    📄 Abstract
+    -->
+    <a href="https://doi.org/10.5281/zenodo.17008540" target="_blank" style="color: blue; text-decoration: underline;"> 
+    📄 Space Technology and Public Health
+    </a>
+</p>
+
+
+    <h2 style="text-align: justify;"  >National School of Astronomy Technology</h2> 
+    <p style="text-align: justify;"><em>Instruments, techniques and methods for high spatial resolution imaging and high spectral resolution in ground-based astronomy.</em>
+    INAF (National Institute for Astrophysics), OAC (Astronomical Observatory of Capodimonte), Naples, Italy, 23–28 Sep 2002.
+    </p>
+
+</section>
+
+
+
+        <header><h1>Workshops</h1></header>
+        <section class="workshops">
+
+            <h2 style="text-align: justify;">Rosetta e la cometa</h2>
+            <p style="text-align: justify;"><em>Il contributo dell’Italia a 20 anni dal lancio della missione Esa.</em>
+                 INAF-Osservatorio Astronomico di Capodimonte e Università degli Studi di Napoli Parthenope, Napoli (Italia), 17-19 giugno 2024.
+           </p>
+
+
+            <h2 style="text-align: justify;">LSST TVS workshop 2018</h2>
+            <p style="text-align: justify;"><em>Large Synoptic Survey Telescope Corporation Transients and Variable Stars workshop.</em>
+                 INAF (National Institute for Astrophysics) and OAC (Astronomical Observatory of Capodimonte), Naples (Italy), 9–11 April 2018.
+           </p>
+        
+
+            <h2 style="text-align: justify;">V EARSel (European Association of Remote Sensing Laboratories) workshop</h2>
+            <p style="text-align: justify;"><em>Advances in remote sensing for cultural heritage from site detection, to documentation and risk monitoring.</em>
+                 ESA (European Space Agency) and EARSel (European Association of Remote Sensing Laboratories) and CNR (Department of Earth and Environment), Frascati (Rome) – Italy,12–13 November, 2015.
+           </p>
+
+<h2 style="text-align: justify;">  FRINGE 2015 Workshop </h2>
+ <p style="text-align: justify;"><em>Advances in the Science and Applications of SAR Interferometry and Sentinel-1 InSAR Workshop. </em>
+ESA (European Space Agency)- ESRIN (European Space Research Institute), Frascati (Rome) – Italy, 23–27 March, 2015.
+ </p>
+
+<h2 style="text-align: justify;"> Planetek Workshop</h2>
+<p style="text-align: justify;"> <em>Use and manage SAR data in defence and security applications.</em>  
+Planetek Italia srl – Rome, Italy, March 31, 2015.
+</p>
+ 
+<h2 style="text-align: justify;"> 2nd Workshop of the European Marie Curie Research Training Network</h2>
+ <p style="text-align: justify;"><em> Constituents, Fundamental Forces and Symmetries of the Universe</em>
+University of Naples Federico II, Faculty of Mathematics, Physics and Natural Sciences, Complesso Universitario Monte S. Angelo, Naples,Italy, 09–13 October, 2006.
+</p>
+
+
+</section>
+
+
+        <header><h1>IT Skills</h1></header>
+        <section class="IT-Skills">
+
+           <h2>MATLAB Academy – MathWorks </h2>
+
+           <h3 style="text-align: left;  margin-bottom: 0px "> Online courses</h3>
+           <p style="text-align: left;">
+                <em> MATLAB Fundamentals </em> (online), February 02, 2019 
+                <em> Introduction to Statistical Methods with MATLAB</em> (online), February 06, 2019
+                <em> Introduction to Linear Algebra with MATLAB</em> (online), February 08, 2019 
+                <em>Solving Ordinary Differential Equations with MATLAB</em> (online), February 11, 2019
+                <em>Solving Nonlinear Equations with MATLAB</em> (online) February 18, 2019
+            </p>
+            
+            <h3  style="text-align: left;"> In-person course </h3>
+            <p style="text-align: left;"><em>Mathematical Modelling with MATLAB </em>, The MathWorks, Inc, Rome, Italy,
+                 10 Jun 2014
+            </p>
+
+         
+            <h2>HarvardX on EdX</h2>
+            <p><em>Introduction to Python for Data Science</em> (online), 1-15, January 2017 
+            </p>
+<!--
+            <a href="https://events.cineca.it/it" target="_blank" rel="noopener noreferrer">CINECA Academy - Rome, Italy</a>
+-->
+            <h2>CINECA Academy - Rome, Italy</h2>
+            <p style="text-align: left;">
+            <em>Introduction to HPC Scientific Programming Tools and Techniques</em>
+            9 –13 Apr 2014 
+            <em>Introduction to Scientific and Technical Computing in C++</em>
+            13–15 Nov 2013
+            <em>Introduction to C Programming Language for Scientific Applications</em>
+            29–30 Oct 2013
+           <small> (CINECA-Consortium of universities, SCAI-SuperComputing Applications and Innovation Department) </small> 
+            <p>
+
+
+
+
+        </section>
+
+
+
+
+        <header><h1>Certifications</h1></header>
+        <section class="certifications">
+         <h2>ECDL GIS Certification<br>
+        <em>GIS Certificate n. GIS 000384</em></h2>
+    <p>
+        <em> Cartography</em>
+        <em>  Geographic Information Systems (GIS) </em>
+        <em>  Use of a GIS software (ArcGIS 10) </em>
+    
+        Italian Association for Informatics and Computation (AICA) 
+        Faculty of Science and Technology, Parthenope University – Naples (Italy) 
+        16 December 2011, Naples, Italy
+    </p>
+</section>
+
+
+
+        <header><h1>Languages</h1></header>
+        <section class="languages">
+          <h2><a href="lingue.html" target="_blank" rel="noopener noreferrer"> Competenze linguistiche </a></h2>
+        </section>
+
+
+
+        <header><h1>E‑learning / MOOC</h1></header>
+
+        <section class="elearning">
+            <h2><a href="https://www.meted.ucar.edu/" target="_blank" rel="noopener noreferrer"> COMET - MetEd Education and Training </a></h2>
+            <p><em><a href="meted.html" target="_blank" rel="noopener noreferrer"><big> Elenco dei corsi MetEd   </big></a> </em></p>
+
+            <h2><a href="https://www.esri.com/training/mooc/" target="_blank" rel="noopener noreferrer"> Esri Academy</a></h2>
+            <p><em><a href="ESRI.html" target="_blank" rel="noopener noreferrer"><big>Elenco dei corsi ESRI</big> </a> </em></p>
+       
+            <h2><a href="https://eo-college.org/courses/" target="_blank" rel="noopener noreferrer"> EO-college</a></h2>
+            <p><em><a href="https://eo-college.org/courses/echoes-in-space/" target="_blank" rel="noopener noreferrer"><big>Introduction to Radar Remote Sensing, 11 November 2017</big> </a> </em></p>
+         
+        </section>
+
+
+    </div>
+</body>
+</html>
