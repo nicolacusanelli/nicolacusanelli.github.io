@@ -6,37 +6,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  /* Base */
-  html, body {
+/* Base */
+html, body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', Arial, sans-serif;
     background-color: #3a8bbf;
     color: #222;
     min-height: 100%;
-  }
+}
 
-  body {
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-  }
+}
 
-  #page-wrapper {
+#page-wrapper {
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-  }
+}
 
-  /* Nav */
-  nav {
+/* Nav */
+nav {
     background-color: #dbe1a1cc;
     padding: 20px 15px;
     box-sizing: border-box;
     flex: 0 0 200px;
-  }
+    display: flex;
+    flex-direction: column;
+}
 
-  nav a {
+nav a {
     display: block;
     color: #222;
     text-decoration: none;
@@ -46,34 +48,41 @@
     padding-left: 8px;
     border-left: 4px solid transparent;
     transition: all 0.3s ease;
-  }
-
-
-/* Prima voce del menu più in basso */
-nav a:first-child {
-    margin-top: 40px; /* aumenta o diminuisci a piacere */
 }
 
+/* Primo link più basso */
+nav a:first-child {
+    margin-top: 40px;
+}
 
-  nav a:hover { border-left-color: #1a4fff; color:#1a4fff; }
+/* Spaziatura Gallery */
+nav a[href*="gallery"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-  nav hr {
+nav a:hover {
+    border-left-color: #1a4fff;
+    color:#1a4fff;
+}
+
+nav hr {
     margin: 10px 0;
     border: none;
     border-top: 1px solid #aaa;
-  }
+}
 
-  /* Content */
-  #content-wrapper {
+/* Content */
+#content-wrapper {
     flex: 1;
     padding: 20px;
     background-color: #f7f9fa;
     box-shadow: inset 0 0 10px #aaa8;
     box-sizing: border-box;
     min-width: 0;
-  }
+}
 
-  header {
+header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,59 +91,58 @@ nav a:first-child {
     padding: 10px 20px;
     border-bottom: 2px solid #9db77e;
     margin-bottom: 20px;
-  }
+}
 
-  header img {
+header img {
     max-height: 130px;
     width: auto;
     margin: 10px;
-  }
+}
 
-  header .title-text {
+header .title-text {
     text-align: center;
     flex: 1;
     min-width: 150px;
-  }
+}
 
-  header .main-title {
+header .main-title {
     font-size: 36px;
     font-weight: 700;
     color: #49672b;
     margin: 0;
-  }
+}
 
-  header .subtitle {
+header .subtitle {
     font-style: italic;
     font-size: 20px;
     margin-top: 6px;
     color: #688a3d;
-  }
+}
 
-  .image-container {
+.image-container {
     display: flex;
     justify-content: center;
     margin: 20px auto;
-  }
+}
 
 .image-container img {
-    max-width: 500px; /* riduce la dimensione massima su schermi grandi */
-    width: 100%;       /* mantiene la scalabilità su schermi piccoli */
+    max-width: 500px; /* leggermente più piccola */
+    width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
     display: block;
 }
 
-
-  main {
+main {
     font-size: 18px;
     line-height: 1.6;
     color: #333;
     max-width: 900px;
     margin: 0 auto 30px auto;
-  }
+}
 
-  footer {
+footer {
     text-align: center;
     padding: 15px 20px;
     background-color: #a4b26fdd;
@@ -144,51 +152,67 @@ nav a:first-child {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-  }
+}
 
-  footer a {
+footer a {
     color: #2c3e1f;
     text-decoration: none;
-  }
-  footer a:hover { text-decoration: underline; }
+}
+footer a:hover { text-decoration: underline; }
 
-  /* Responsive */
-  @media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 768px) {
+
     #page-wrapper {
-      flex-direction: column;
+        flex-direction: column;
     }
 
     nav {
-      flex: 1 0 auto;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      border-right: none;
-      border-bottom: 2px solid #333;
+        width: 100%;
+        flex-wrap: nowrap;
+        align-items: center;
+        border-right: none;
+        border-bottom: 2px solid #333;
     }
 
     nav a {
-      margin: 5px 10px;
-      font-size: 16px;
+        margin: 10px 0;
+        font-size: 16px;
+        padding-left: 0;
     }
 
-nav a[href*="gallery"] {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+    nav a[href*="gallery"] {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    header img {
+        max-height: 100px;
+        margin: 5px 0;
+    }
+
+    header .title-text {
+        min-width: auto;
+        margin: 10px 0;
+    }
 
     header .main-title { font-size: 28px; }
     header .subtitle { font-size: 16px; }
 
     footer {
-      flex-direction: column;
-      text-align: center;
+        flex-direction: column;
+        text-align: center;
     }
-  }
+}
 </style>
 </head>
+
 <body>
 <div id="page-wrapper">
   <nav>
@@ -234,18 +258,18 @@ nav a[href*="gallery"] {
 </footer>
 
 <script>
-  function updateDateTime() {
+function updateDateTime() {
     const now = new Date();
     const options = {
-      year: 'numeric', month: 'long', day: 'numeric',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
-      hour12: false,
-      timeZoneName: 'short'
+        year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false,
+        timeZoneName: 'short'
     };
     document.getElementById('datetime').textContent = now.toLocaleDateString('it-IT', options);
-  }
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
+}
+updateDateTime();
+setInterval(updateDateTime, 1000);
 </script>
 </body>
 </html>
