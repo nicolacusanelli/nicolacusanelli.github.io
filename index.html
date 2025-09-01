@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+  /* Base */
   html, body {
     margin: 0;
     padding: 0;
@@ -24,44 +25,52 @@
   #page-wrapper {
     display: flex;
     flex: 1;
-    flex-direction: row;
-    flex-wrap: wrap; /* permette al contenuto di andare a capo su mobile */
+    flex-wrap: wrap;
   }
 
+  /* Nav */
   nav {
-    width: 180px;
     background-color: #dbe1a1cc;
-    padding: 30px 15px 10px 15px;
-    border-right: 2px solid #333;
+    padding: 20px 15px;
     box-sizing: border-box;
+    flex: 0 0 200px;
   }
 
   nav a {
     display: block;
     color: #222;
     text-decoration: none;
-    margin-bottom: 12px;
+    margin-bottom: 32px;
     font-weight: 600;
     font-size: 18px;
-    border-left: 4px solid transparent;
     padding-left: 8px;
+    border-left: 4px solid transparent;
     transition: all 0.3s ease;
   }
 
-  nav a:first-child { margin-top: 25px; }
 
-  nav a:hover {
-    color: #1a4fff;
-    border-left-color: #1a4fff;
+/* Prima voce del menu più in basso */
+nav a:first-child {
+    margin-top: 40px; /* aumenta o diminuisci a piacere */
+}
+
+
+  nav a:hover { border-left-color: #1a4fff; color:#1a4fff; }
+
+  nav hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #aaa;
   }
 
+  /* Content */
   #content-wrapper {
     flex: 1;
-    padding: 30px 20px;
+    padding: 20px;
     background-color: #f7f9fa;
     box-shadow: inset 0 0 10px #aaa8;
     box-sizing: border-box;
-    min-width: 250px;
+    min-width: 0;
   }
 
   header {
@@ -72,11 +81,11 @@
     background-color: white;
     padding: 10px 20px;
     border-bottom: 2px solid #9db77e;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   header img {
-    height: 130px;
+    max-height: 130px;
     width: auto;
     margin: 10px;
   }
@@ -84,10 +93,11 @@
   header .title-text {
     text-align: center;
     flex: 1;
+    min-width: 150px;
   }
 
   header .main-title {
-    font-size: 42px;
+    font-size: 36px;
     font-weight: 700;
     color: #49672b;
     margin: 0;
@@ -95,32 +105,33 @@
 
   header .subtitle {
     font-style: italic;
-    font-size: 26px;
-    margin-top: 8px;
+    font-size: 20px;
+    margin-top: 6px;
     color: #688a3d;
   }
 
   .image-container {
     display: flex;
     justify-content: center;
-    margin: 30px auto 40px auto;
+    margin: 20px auto;
   }
 
-  .image-container img {
-    max-width: 500px;
-    width: 100%;
+.image-container img {
+    max-width: 500px; /* riduce la dimensione massima su schermi grandi */
+    width: 100%;       /* mantiene la scalabilità su schermi piccoli */
     height: auto;
     border-radius: 8px;
     box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
     display: block;
-  }
+}
+
 
   main {
     font-size: 18px;
     line-height: 1.6;
     color: #333;
     max-width: 900px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 30px auto;
   }
 
   footer {
@@ -131,20 +142,24 @@
     color: #2c3e1f;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   footer a {
     color: #2c3e1f;
     text-decoration: none;
   }
-
   footer a:hover { text-decoration: underline; }
 
   /* Responsive */
   @media (max-width: 768px) {
+    #page-wrapper {
+      flex-direction: column;
+    }
+
     nav {
+      flex: 1 0 auto;
       width: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -153,35 +168,27 @@
       border-bottom: 2px solid #333;
     }
 
-    #page-wrapper {
-      flex-direction: column;
+    nav a {
+      margin: 5px 10px;
+      font-size: 16px;
     }
 
-    header .main-title { font-size: 32px; }
-    header .subtitle { font-size: 20px; }
-  }
-
-  nav {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-  }
-  nav a {
-    padding: 8px;
-    text-decoration: none;
-    color: black;
-  }
-  nav hr {
-    margin: 10px 0;
-    border: none;
-    border-top: 1px solid #aaa;
-  }
+nav a[href*="gallery"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 
+    header .main-title { font-size: 28px; }
+    header .subtitle { font-size: 16px; }
 
+    footer {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
 </style>
 </head>
-
 <body>
 <div id="page-wrapper">
   <nav>
@@ -203,9 +210,6 @@
       <img src="img/Logo Planetario Astronomico.png" alt="Logo sinistro">
       <div class="title-text">
         <div class="main-title">Home Page di Nicola Cusanelli</div>
-<!--
-        <div class="subtitle">Welcome to my personal homepage</div>
--->
       </div>
       <img src="img/Logo Planetario Astronomico.png" alt="Logo destro">
     </header>
@@ -216,11 +220,7 @@
 
     <main>
       <p style="font-size:24px; font-style:italic; text-align:center; color:#444;">
-
         Welcome to my personal homepage
-        <!--
-        Benvenuto nel mio sito personale dedicato alle scienze e alle mie passioni.
-      -->
       </p>
     </main>
   </div>
@@ -233,12 +233,6 @@
   </div>
 </footer>
 
-<!---
-<footer>
-  <div id="datetime"></div>
-  <div></div>
-</footer>
--->
 <script>
   function updateDateTime() {
     const now = new Date();
