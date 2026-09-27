@@ -2,265 +2,525 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0F1B33" />
+<meta name="description" content="Home page personale di Nicola Cusanelli." />
 <title>Home Page di Nicola Cusanelli</title>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+
+<script>document.documentElement.classList.add('js');</script>
+
 <style>
-/* Base */
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', Arial, sans-serif;
-    background-color: #3a8bbf;
-    color: #222;
-    min-height: 100%;
+/* ------------------------------------------------------------------
+   Palette
+   Notte      #0F1B33  blu notte (barra laterale, pannello, footer)
+   Carta      #F1F2EE  sfondo pagina
+   Inchiostro #1A2233  testo
+   Ottone     #C29D55  accento su fondo scuro
+   Ottone sc. #7A5A1E  accento su fondo chiaro
+   ------------------------------------------------------------------ */
+:root {
+    --notte: #0F1B33;
+    --notte-2: #1A2A4D;
+    --carta: #F1F2EE;
+    --carta-2: #E7E8E1;
+    --inchiostro: #1A2233;
+    --grigio: #586275;
+    --ottone: #C29D55;
+    --ottone-scuro: #7A5A1E;
+    --linea: #D2D5CE;
+    --chiaro: #C7CFE2;
+
+    --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+    --side: 264px;
+    --pad: clamp(24px, 5vw, 72px);
 }
 
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
 body {
-    display: flex;
-    flex-direction: column;
+    margin: 0;
+    background: var(--carta);
+    color: var(--inchiostro);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+:focus-visible { outline: 2px solid var(--ottone-scuro); outline-offset: 3px; }
+.side :focus-visible,
+.foot :focus-visible,
+.cards :focus-visible { outline-color: var(--ottone); }
+
+.skip {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    background: #fff;
+    color: var(--inchiostro);
+    padding: 8px 14px;
+    border-radius: 6px;
+    z-index: 10;
+}
+.skip:focus { top: 12px; }
+
+/* ------------------------------------------------------------------
+   Struttura
+   ------------------------------------------------------------------ */
+.shell {
+    display: grid;
+    grid-template-columns: var(--side) minmax(0, 1fr);
     min-height: 100vh;
 }
 
-#page-wrapper {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-}
-
-/* Nav */
-nav {
-    background-color: #dbe1a1cc;
-    padding: 20px 15px;
-    box-sizing: border-box;
-    flex: 0 0 200px;
+.main-col {
     display: flex;
     flex-direction: column;
-}
-
-nav a {
-    display: block;
-    color: #222;
-    text-decoration: none;
-    margin-bottom: 32px;
-    font-weight: 600;
-    font-size: 18px;
-    padding-left: 8px;
-    border-left: 4px solid transparent;
-    transition: all 0.3s ease;
-}
-
-/* Primo link più basso */
-nav a:first-child {
-    margin-top: 40px;
-}
-
-/* Spaziatura Gallery */
-nav a[href*="gallery"] {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-nav a:hover {
-    border-left-color: #1a4fff;
-    color:#1a4fff;
-}
-
-nav hr {
-    margin: 10px 0;
-    border: none;
-    border-top: 1px solid #aaa;
-}
-
-/* Content */
-#content-wrapper {
-    flex: 1;
-    padding: 20px;
-    background-color: #f7f9fa;
-    box-shadow: inset 0 0 10px #aaa8;
-    box-sizing: border-box;
     min-width: 0;
 }
 
-header {
+main { flex: 1; }
+
+/* ------------------------------------------------------------------
+   Barra laterale
+   ------------------------------------------------------------------ */
+.side {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--notte);
+    color: var(--chiaro);
+    padding: 32px 24px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.brand {
+    display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    background-color: white;
-    padding: 10px 20px;
-    border-bottom: 2px solid #9db77e;
-    margin-bottom: 20px;
 }
 
-header img {
-    max-height: 130px;
-    width: auto;
-    margin: 10px;
+.logo {
+    width: 96px;
+    height: 96px;
+    padding: 11px;
+    border-radius: 16px;
+    background: radial-gradient(130% 130% at 32% 26%, var(--notte-2) 0%, #081326 75%);
+    display: grid;
+    place-items: center;
+}
+.logo svg { width: 100%; height: 100%; overflow: visible; }
+
+.orbit-group {
+    transform-box: view-box;
+    transform-origin: 24px 24px;
+    animation: orbit 7s linear infinite;
+}
+@keyframes orbit { to { transform: rotate(360deg); } }
+
+.menu-btn {
+    display: none;
+    font: 500 .9rem var(--sans);
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(199, 207, 226, .45);
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
 }
 
-header .title-text {
-    text-align: center;
-    flex: 1;
-    min-width: 150px;
-}
-
-header .main-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #49672b;
+.nav ul {
+    list-style: none;
     margin: 0;
+    padding: 14px 0;
+    border-top: 1px solid rgba(199, 207, 226, .18);
 }
+.nav ul:last-child { border-bottom: 1px solid rgba(199, 207, 226, .18); }
+.nav li + li { margin-top: 2px; }
 
-header .subtitle {
-    font-style: italic;
-    font-size: 20px;
-    margin-top: 6px;
-    color: #688a3d;
-}
-
-.image-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px auto;
-}
-
-.image-container img {
-    max-width: 500px; /* leggermente più piccola */
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+.nav a {
     display: block;
+    padding: 9px 0 9px 14px;
+    border-left: 3px solid transparent;
+    color: var(--chiaro);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: .98rem;
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+}
+.nav a:hover {
+    color: #fff;
+    border-left-color: var(--ottone);
+    background: rgba(255, 255, 255, .04);
 }
 
-main {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #333;
-    max-width: 900px;
-    margin: 0 auto 30px auto;
+.nav-static {
+    display: block;
+    padding: 9px 0 9px 14px;
+    border-left: 3px solid transparent;
+    color: rgba(199, 207, 226, .55);
+    font-weight: 500;
+    font-size: .98rem;
 }
 
-footer {
-    text-align: center;
-    padding: 15px 20px;
-    background-color: #a4b26fdd;
-    border-top: 1px solid #556b2f;
-    color: #2c3e1f;
+/* ------------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------------ */
+.hero {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(32px, 5vw, 72px);
+    padding: clamp(40px, 8vw, 104px) var(--pad) clamp(40px, 6vw, 72px);
+}
+.hero > * { position: relative; z-index: 1; }
+.hero > .graticule { z-index: 0; }
+
+.hero h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -.015em;
+    color: var(--notte);
+}
+
+.welcome {
+    margin: 22px 0 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    line-height: 1.3;
+    color: var(--grigio);
+}
+
+.portrait {
+    position: relative;
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+.portrait::before {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border: 1px solid var(--ottone-scuro);
+    border-radius: 4px;
+    z-index: -1;
+}
+.portrait img {
+    width: 100%;
+    aspect-ratio: 670 / 502;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 18px 40px -18px rgba(15, 27, 51, .45);
+}
+
+/* Reticolo di coordinate: il motivo grafico della pagina */
+.graticule {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+    pointer-events: none;
+}
+.graticule .ecl { stroke: var(--ottone-scuro); stroke-width: 1.4; }
+.graticule .dot { fill: var(--ottone-scuro); stroke: none; }
+
+.hero > .graticule {
+    position: absolute;
+    width: min(820px, 110%);
+    aspect-ratio: 1;
+    right: -16%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--notte);
+    opacity: .14;
+}
+
+/* Un solo momento animato: il reticolo si disegna al caricamento */
+.graticule[data-draw] *:not(.dot) {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 2.6s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+.graticule[data-draw] .dot {
+    opacity: 0;
+    animation: fade .6s ease 2.2s forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .graticule[data-draw] *:not(.dot) { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
+    .graticule[data-draw] .dot { animation: none; opacity: 1; }
+    .orbit-group { animation: none; }
+    .nav a, .card { transition: none; }
+}
+
+/* ------------------------------------------------------------------
+   Riquadri di sezione
+   ------------------------------------------------------------------ */
+.cards-section {
+    padding: clamp(28px, 5vw, 56px) var(--pad) clamp(48px, 7vw, 96px);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2.5vw, 24px);
+}
+
+.card {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 128px;
+    padding: 20px;
+    border-radius: 6px;
+    background: var(--carta-2);
+    border: 1px solid var(--linea);
+    border-top: 3px solid var(--grigio);
+    color: var(--notte);
+    text-decoration: none;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    transition: border-color .2s ease, background-color .2s ease;
+}
+.card:hover { border-color: var(--inchiostro); border-top-color: var(--inchiostro); background-color: #fdfbf6; }
+.card[aria-disabled="true"] { cursor: default; }
+.card[aria-disabled="true"]:hover { border-color: var(--linea); border-top-color: var(--grigio); background-color: var(--carta-2); }
+
+/* ------------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------------ */
+.foot {
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding: 20px var(--pad);
+    background: var(--notte);
+    color: var(--chiaro);
+    font-size: .92rem;
+}
+#datetime { font-variant-numeric: tabular-nums; }
+.foot a {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, .35);
+    text-underline-offset: 3px;
+}
+.foot a:hover { text-decoration-color: #fff; }
+
+/* ------------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .hero > .graticule { right: -35%; top: 30%; width: 120%; }
+    .cards { grid-template-columns: minmax(0, 1fr); }
 }
 
-footer a {
-    color: #2c3e1f;
-    text-decoration: none;
-}
-footer a:hover { text-decoration: underline; }
+@media (max-width: 820px) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
 
-/* Responsive */
-@media (max-width: 768px) {
-
-    #page-wrapper {
-        flex-direction: column;
+    .side {
+        position: static;
+        height: auto;
+        padding: 16px var(--pad);
+        gap: 0;
     }
-
-    nav {
-        width: 100%;
-        flex-wrap: nowrap;
+    .side-top {
+        display: flex;
         align-items: center;
-        border-right: none;
-        border-bottom: 2px solid #333;
+        justify-content: space-between;
+        gap: 16px;
     }
+    .brand { justify-content: flex-start; }
+    .logo { width: 56px; height: 56px; padding: 7px; border-radius: 12px; }
 
-    nav a {
-        margin: 10px 0;
-        font-size: 16px;
-        padding-left: 0;
-    }
-
-    nav a[href*="gallery"] {
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    header img {
-        max-height: 100px;
-        margin: 5px 0;
-    }
-
-    header .title-text {
-        min-width: auto;
-        margin: 10px 0;
-    }
-
-    header .main-title { font-size: 28px; }
-    header .subtitle { font-size: 16px; }
-
-    footer {
-        flex-direction: column;
-        text-align: center;
-    }
+    .menu-btn { display: inline-flex; }
+    .js .nav { display: none; margin-top: 16px; }
+    .js .nav.open { display: block; }
+    .nav { margin-top: 16px; }
 }
 </style>
 </head>
 
 <body>
-<div id="page-wrapper">
-  <nav>
-      <a href="education/education.html" target="_blank" rel="noopener noreferrer">Education</a>
-      <a href="physics/index.html" target="_blank" rel="noopener noreferrer">Physics</a>
-      <a href="astronomy/astronomy.html" target="_blank" rel="noopener noreferrer">Astronomy</a>
-      <a href="meteorology/meteo.html" target="_blank" rel="noopener noreferrer">Meteorology</a>
-      <a href="gis/gis.html" target="_blank" rel="noopener noreferrer">GIS</a>
-      <hr>
-      <a href="gallery/gallery.html" target="_blank" rel="noopener noreferrer">Gallery</a>
-      <hr>
-      <a href="scrooge/scrooge_mcduck.html" target="_blank" rel="noopener noreferrer">Scrooge McDuck</a>
-      <a href="correva/correva.html" target="_blank" rel="noopener noreferrer">Correva l'Anno...</a>
-      <hr>
-  </nav>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
 
-  <div id="content-wrapper">
-    <header>
-      <img src="img/Logo Planetario Astronomico.png" alt="Logo sinistro">
-      <div class="title-text">
-        <div class="main-title">Home Page di Nicola Cusanelli</div>
+<div class="shell">
+
+  <!-- Barra laterale -->
+  <aside class="side">
+    <div class="side-top">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <defs>
+              <radialGradient id="saturn" cx="34%" cy="30%" r="75%">
+                <stop offset="0%" stop-color="#F3DBA3" />
+                <stop offset="100%" stop-color="var(--ottone-scuro)" />
+              </radialGradient>
+            </defs>
+            <circle cx="8" cy="9" r=".7" fill="#fff" opacity=".6" />
+            <circle cx="39" cy="8" r=".9" fill="#fff" opacity=".45" />
+            <circle cx="42" cy="19" r=".6" fill="#fff" opacity=".7" />
+            <circle cx="7" cy="33" r=".8" fill="#fff" opacity=".5" />
+            <circle cx="15" cy="41" r=".6" fill="#fff" opacity=".4" />
+            <ellipse cx="24" cy="24" rx="13" ry="4.3" fill="none" stroke="var(--ottone)" stroke-width="1.3" opacity=".65" transform="rotate(-20 24 24)" />
+            <circle cx="24" cy="24" r="7" fill="url(#saturn)" />
+            <g class="orbit-group">
+              <circle cx="40" cy="24" r="1.5" fill="#fff" opacity=".85" />
+            </g>
+          </svg>
+        </span>
       </div>
-      <img src="img/Logo Planetario Astronomico.png" alt="Logo destro">
-    </header>
-
-    <div class="image-container">
-      <img src="img/670_0_2097366_39481.jpg" alt="Immagine di Nicola" />
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
     </div>
 
-    <main>
-      <p style="font-size:24px; font-style:italic; text-align:center; color:#444;">
-        Welcome to my personal homepage
-      </p>
+    <nav class="nav" id="menu" aria-label="Sezioni del sito">
+      <ul>
+        <li><a href="education/education.html" target="_blank" rel="noopener noreferrer">Education</a></li>
+      </ul>
+      <ul>
+        <li><span class="nav-static" aria-disabled="true">Gallery</span></li>
+      </ul>
+      <ul>
+        <li><span class="nav-static" aria-disabled="true">Scrooge McDuck</span></li>
+        <li><span class="nav-static" aria-disabled="true">Correva l'Anno...</span></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenuto -->
+  <div class="main-col">
+    <main id="contenuto">
+
+      <section class="hero">
+        <svg class="graticule" data-draw viewBox="0 0 700 700" aria-hidden="true" focusable="false"></svg>
+
+        <div>
+          <h1>Nicola Cusanelli</h1>
+          <p class="welcome">Welcome to my personal homepage</p>
+        </div>
+
+        <div class="portrait">
+          <img src="img/670_0_2097366_39481.jpg" alt="Immagine di Nicola" />
+        </div>
+      </section>
+
+      <!--
+        SPAZIO PER IL CV
+        Qui puoi aggiungere le sezioni di presentazione (profilo, esperienze,
+        formazione, competenze...) come <section class="cv"> prima di .cards-section.
+      -->
+
+      <section class="cards-section" aria-label="Sezioni scientifiche">
+        <div class="cards">
+          <!--
+            PHYSICS e ASTRONOMY
+            Non cliccabili per ora: le pagine non sono ancora pronte.
+            Quando lo saranno, cambia il tag da <div> ad <a>, aggiungi
+            l'href (es. "physics/index.html") e togli aria-disabled.
+          -->
+          <div class="card" aria-disabled="true">Physics</div>
+          <div class="card" aria-disabled="true">Astronomy</div>
+          <!--
+            ATLANTE DELLE SCIENZE
+            Link segnaposto: sostituisci "atlante/index.html" con l'indirizzo
+            definitivo del progetto quando sarà pronto.
+          -->
+          <a class="card" href="atlante/index.html" target="_blank" rel="noopener noreferrer">Atlante delle Scienze</a>
+        </div>
+      </section>
     </main>
+
+    <footer class="foot">
+      <div id="datetime"></div>
+      <div>
+        <a href="mailto:cusnic451@gmail.com">info.nicolacusanelli@gmail.com</a>
+      </div>
+    </footer>
   </div>
+
 </div>
 
-<footer>
-  <div id="datetime"></div>
-  <div>
-    <a href="mailto:cusnic451@gmail.com">info.nicolacusanelli@gmail.com</a>
-  </div>
-</footer>
-
 <script>
+/* Reticolo di coordinate (sfera celeste): parallelli, meridiani, eclittica */
+function buildGraticule(svg) {
+    var NS = 'http://www.w3.org/2000/svg';
+    var c = 350, R = 300, rad = Math.PI / 180;
+    var tilt = Math.sin(20 * rad), ct = Math.cos(20 * rad);
+
+    function add(name, attrs, cls) {
+        var el = document.createElementNS(NS, name);
+        for (var k in attrs) el.setAttribute(k, attrs[k]);
+        if (cls) el.setAttribute('class', cls);
+        el.setAttribute('pathLength', '1');
+        svg.appendChild(el);
+    }
+
+    add('circle', { cx: c, cy: c, r: R });
+
+    [-60, -30, 0, 30, 60].forEach(function (lat) {
+        var rx = R * Math.cos(lat * rad);
+        add('ellipse', { cx: c, cy: c - R * Math.sin(lat * rad) * ct, rx: rx, ry: rx * tilt });
+    });
+
+    [30, 60].forEach(function (lon) {
+        add('ellipse', { cx: c, cy: c, rx: R * Math.sin(lon * rad), ry: R });
+    });
+    add('line', { x1: c, y1: c - R, x2: c, y2: c + R });
+
+    /* Eclittica inclinata di 23,4° con un piccolo pianeta */
+    add('ellipse', { cx: c, cy: c, rx: R, ry: R * tilt, transform: 'rotate(-23.4 ' + c + ' ' + c + ')' }, 'ecl');
+
+    var t = -35 * rad, a = -23.4 * rad;
+    var dx = R * Math.cos(t), dy = R * tilt * Math.sin(t);
+    add('circle', {
+        cx: c + dx * Math.cos(a) - dy * Math.sin(a),
+        cy: c + dx * Math.sin(a) + dy * Math.cos(a),
+        r: 6
+    }, 'dot');
+}
+document.querySelectorAll('svg.graticule').forEach(buildGraticule);
+
+/* Menu su schermi piccoli */
+(function () {
+    var btn = document.querySelector('.menu-btn');
+    var nav = document.getElementById('menu');
+    btn.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+})();
+
+/* Data e ora */
 function updateDateTime() {
-    const now = new Date();
-    const options = {
+    var now = new Date();
+    var options = {
         year: 'numeric', month: 'long', day: 'numeric',
         hour: '2-digit', minute: '2-digit', second: '2-digit',
         hour12: false,
